@@ -1,4 +1,4 @@
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
@@ -163,23 +163,26 @@
             background: #2d3a5e;
             color: white;
         }
+        @keyframes fadeSlide {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+    </style>
+</head>
+<body>
 <div class="card">
     <h1>🧩 HK5886 工坊</h1>
     <div class="sub">⚡ 整点互动 · 逆向脑洞 · 吐槽基地</div>
-   <div class="card">
-    <h1>🧩 HK5886 工坊</h1>
-    <div class="sub">⚡ 整点互动 · 逆向脑洞 · 吐槽基地</div>
-        <div class="question-area">
-    <div class="question"><i>❓ 你想问点啥</i></div>
-    <div class="button-group">
-        <button id="btnGreet">👋 打个招呼</button>
-        <button id="btnAdApp">🤬 吐槽那个破软件</button>
-        <button id="btnExam">📅 中考倒计时</button>
-        <button id="btnReverse">🛠️ 逆向小技巧</button>
-        <button id="btnWho">🤔 姜再航是谁？</button>
+    <div class="question-area">
+        <div class="question"><i>❓ 你想问点啥</i></div>
+        <div class="button-group">
+            <button id="btnGreet">👋 打个招呼</button>
+            <button id="btnAdApp">🤬 吐槽那个破软件</button>
+            <button id="btnExam">📅 中考倒计时</button>
+            <button id="btnReverse">🛠️ 逆向小技巧</button>
+            <button id="btnWho">🤔 姜再航是谁？</button>
+        </div>
     </div>
-</div>
-            <div class="chat-log" id="chatLog">
+    <div class="chat-log" id="chatLog">
         <div class="message">
             <div class="avatar">🤖</div>
             <div class="bubble">嗨，我是你的网站小AI。<br>点击上面按钮，或者直接问我～</div>
@@ -192,43 +195,46 @@
         🧪 实验性互动组件 | 灵感来自 DeepSeek & 你的逆向精神
     </div>
 </div>
-        <script>
+<script>
     const examDate = new Date(2026, 5, 15);
     const chatLog = document.getElementById('chatLog');
-        function addMessage(text, isUser = false) {
-    const msgDiv = document.createElement('div');
-    msgDiv.className = 'message';
-    const avatarSpan = document.createElement('div');
-    avatarSpan.className = isUser ? 'avatar user-avatar' : 'avatar';
-    avatarSpan.innerText = isUser ? '👤' : '🤖';
-    const bubbleSpan = document.createElement('div');
-    bubbleSpan.className = isUser ? 'bubble user-bubble' : 'bubble';
-    bubbleSpan.innerText = text;
-    msgDiv.appendChild(avatarSpan);
-    msgDiv.appendChild(bubbleSpan);
-    chatLog.appendChild(msgDiv);
-    chatLog.scrollTop = chatLog.scrollHeight;
-    }
-        function clearChat() {
-    chatLog.innerHTML = '';
-    addMessage('对话已清空，继续问我吧～', false);
-}
 
-function getExamCountdown() {
-    const now = new Date();
-    const diff = examDate - now;
-    if (diff <= 0) return '🎉 中考已经结束！祝高中生活愉快～ 🎉';
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((diff % 86400000) / 3600000);
-    return `📅 距离中考还有 ${days} 天 ${hours} 小时！加油冲刺 ✍️ 拿下理想高中！`;
-}
-        const adAppRants = [
+    function addMessage(text, isUser = false) {
+        const msgDiv = document.createElement('div');
+        msgDiv.className = 'message';
+        const avatarSpan = document.createElement('div');
+        avatarSpan.className = isUser ? 'avatar user-avatar' : 'avatar';
+        avatarSpan.innerText = isUser ? '👤' : '🤖';
+        const bubbleSpan = document.createElement('div');
+        bubbleSpan.className = isUser ? 'bubble user-bubble' : 'bubble';
+        bubbleSpan.innerText = text;
+        msgDiv.appendChild(avatarSpan);
+        msgDiv.appendChild(bubbleSpan);
+        chatLog.appendChild(msgDiv);
+        chatLog.scrollTop = chatLog.scrollHeight;
+    }
+
+    function clearChat() {
+        chatLog.innerHTML = '';
+        addMessage('对话已清空，继续问我吧～', false);
+    }
+
+    function getExamCountdown() {
+        const now = new Date();
+        const diff = examDate - now;
+        if (diff <= 0) return '🎉 中考已经结束！祝高中生活愉快～ 🎉';
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff % 86400000) / 3600000);
+        return `📅 距离中考还有 ${days} 天 ${hours} 小时！加油冲刺 ✍️ 拿下理想高中！`;
+    }
+    const adAppRants = [
     '那个破变声器，广告连验证都没有，断网也能点，开发者纯粹骗钱。',
     '还记得吗？改个参数就闪退，代码写得跟屎山一样，前两个音效能用后面全是假的。',
     '假广告、假解锁、假音效，套壳应用典范。还好咱们给修干净了。',
     '开发者连广告回调都不写，纯粹前端模拟，断网点一下次数+1，太侮辱智商了。'
 ];
-        const reverseTips = [
+
+const reverseTips = [
     '💡 搜不到 FLAG_SECURE？试试搜 0x2000 或 8192。',
     '🔍 修改 smali 时记得先备份，改错了容易闪退。',
     '🧪 用 MT 管理器 dex++ 搜索字符串，快速定位弹窗位置。',
@@ -236,7 +242,7 @@ function getExamCountdown() {
     '📡 抓包看网络请求，注意自定义头 x-mt-r 之类的签名。',
     '🐚 荣耀手机解BL锁难，以后留作大学实验品。'
 ];
-            document.getElementById('btnGreet').onclick = () => {
+    document.getElementById('btnGreet').onclick = () => {
         addMessage('你好！', true);
         setTimeout(() => addMessage('👋 哟，技术佬来了！今天又有什么新奇想法？需要帮你写代码还是吐槽软件？', false), 100);
     };
